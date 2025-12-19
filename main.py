@@ -13,37 +13,121 @@ st.set_page_config(
 def rot13(text):
     return codecs.encode(text, 'rot_13')
 
-# Custom CSS for modern styling
+# Custom CSS for modern dark styling
 st.markdown("""
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --glass-bg: rgba(255, 255, 255, 0.9);
+        --glass-border: rgba(0, 0, 0, 0.1);
+        /* Light theme colors for black text readability */
+        --text-primary: #000000;
+        --text-secondary: #374151;
+        --text-muted: #6b7280;
+        --text-accent: #667eea;
+        --bg-primary: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+    }
+    
+    * {
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .main {
+        background: var(--bg-primary);
+        min-height: 100vh;
+        color: var(--text-secondary);
+    }
+    
     .main-header {
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         font-size: 2.5rem;
-        color: #1f77b4;
+        font-weight: 700;
         text-align: center;
         margin-bottom: 2rem;
+        text-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
+    
     .tab-content {
-        padding: 1rem;
-        border-radius: 10px;
-        background-color: #f8f9fa;
-        margin-bottom: 1rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
     }
+    
     .stButton>button {
-        background-color: #4CAF50;
-        color: white;
+        background: var(--primary-gradient);
+        color: var(--text-primary);
         border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
+        border-radius: 12px;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
         cursor: pointer;
-        border-radius: 5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
+    
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+    }
+    
     .stTextArea>textarea {
-        border-radius: 5px;
-        border: 1px solid #ddd;
+        border-radius: 12px;
+        border: 2px solid var(--glass-border);
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--text-primary);
+        backdrop-filter: blur(5px);
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .stTextArea>textarea::placeholder {
+        color: var(--text-muted);
+    }
+    
+    .stSelectbox > div > div {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        backdrop-filter: blur(5px);
+    }
+    
+    .stSelectbox > div > div > div > div {
+        color: var(--text-primary);
+    }
+    
+    .stSuccess, .stInfo, .stWarning, .stError {
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        color: var(--text-primary) !important;
+    }
+    
+    /* Ensure all text has proper contrast */
+    .stMarkdown, .stText, p, span, div {
+        color: var(--text-secondary) !important;
+    }
+    
+    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+        color: var(--text-primary) !important;
+    }
+    
+    /* Ensure form labels are readable */
+    label {
+        color: var(--text-secondary) !important;
     }
 </style>
 """, unsafe_allow_html=True)
